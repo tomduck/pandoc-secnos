@@ -34,7 +34,7 @@ __version__ = '2.0.0b1'
 # This is followed by injecting header code as needed for certain output
 # formats.
 
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name, global-statement
 
 import re
 import functools
@@ -93,7 +93,7 @@ def process_sections(key, value, fmt, meta):  # pylint: disable=unused-argument
     """Processes sections."""
 
     global sec
-    
+
     if key == 'Header':
         if 'unnumbered' in value[1][1]:
             return
@@ -135,7 +135,7 @@ def set_name(nametype, division, value):
     old_name = copy.deepcopy(plusname if isplusname else starname)
     name = plusname if isplusname else starname
     name_changed = plusname_changed if isplusname else starname_changed
-    
+
     if isinstance(value, list):  # Singular and plural forms given
         name[division] = value
     else:  # Only the singular form was given
