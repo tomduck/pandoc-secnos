@@ -43,13 +43,13 @@ import json
 import copy
 import textwrap
 
-from pandocfilters import walk
+from pandocfilters import walk, Span
 
 import pandocxnos
 from pandocxnos import STRTYPES, STDIN, STDOUT, STDERR
 from pandocxnos import check_bool, get_meta
 from pandocxnos import repair_refs, process_refs_factory, replace_refs_factory
-
+from pandocxnos import attach_attrs_factory
 
 # Read the command-line arguments
 parser = argparse.ArgumentParser(description='Pandoc section numbers filter.')
@@ -339,8 +339,11 @@ def main(stdin=STDIN, stdout=STDOUT, stderr=STDERR):
                            plusname_changed['section'] else \
                            [name.title() for name in plusname['section']],
                            starname['section'], allow_implicit_refs=True)
+    attach_attrs_span = attach_attrs_factory('pandoc-secnos', Span,
+                                             warninglevel, replace=True)
     altered = functools.reduce(lambda x, action: walk(x, action, fmt, meta),
-                               [repair_refs, process_refs, replace_refs],
+                               [repair_refs, process_refs, replace_refs,
+                                attach_attrs_span],
                                altered)
 
     if fmt in ['latex', 'beamer']:
