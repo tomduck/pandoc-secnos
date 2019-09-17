@@ -1,14 +1,8 @@
 
-
-**Notice:** This beta release may be installed using
-
-    pip install pandoc secnos --upgrade --pre --user
-
-
 pandoc-secnos 2.0.0
 ===================
 
-*pandoc-secnos* is a [pandoc] filter for numbering section references (i.e., cross-referencing) when converting markdown documents to other formats.
+*pandoc-secnos* is a [pandoc] filter for numbering section references when converting markdown to other formats.  It is part of the [pandoc-xnos] filter suite.  LaTeX/pdf, html, and epub output have native support.  Native support for docx output is a work in progress.
 
 Demonstration: Processing [demo3.md] with pandoc + pandoc-secos gives numbered section references in [pdf][pdf3], [tex][tex3], [html][html3], [epub][epub3], [docx][docx3] and other formats.
 
@@ -18,6 +12,7 @@ See also: [pandoc-fignos], [pandoc-eqnos], [pandoc-tablenos] \
 Other filters: [pandoc-comments], [pandoc-latex-extensions]
 
 [pandoc]: http://pandoc.org/
+[pandoc-xnos]: https://github.com/tomduck/pandoc-xnos
 [Issues tracker]: https://github.com/tomduck/pandoc-secnos/issues
 [on GitHub]:  https://github.com/tomduck/pandoc-secnos
 [pandoc-fignos]: https://github.com/tomduck/pandoc-fignos
@@ -45,17 +40,17 @@ Installation
 
 Pandoc-secnos requires [python], a programming language that comes pre-installed on macOS and linux.  It is easily installed on Windows -- see [here](https://realpython.com/installing-python/).  Either python 2.7 or 3.x will do.
 
-Pandoc-secnos may be installed and upgraded using the shell command
+Pandoc-secnos may be installed using the shell command
 
-    pip install pandoc-secnos --user --upgrade
+    pip install pandoc-secnos --user
 
-Pip is a program that downloads and installs software from the Python Package Index, [PyPI].  It normally comes installed with a python distribution.<sup>[2](#footnote2)</sup>
+and upgrade by appending `--upgrade` to the above command.  Pip is a program that downloads and installs software from the Python Package Index, [PyPI].  It normally comes installed with a python distribution.<sup>[2](#footnote2)</sup>
 
-Instructions for installing from source are given in [README.developers].
+Instructions for installing from source are given in [DEVELOPERS.md].
 
 [python]: https://www.python.org/
 [PyPI]: https://pypi.python.org/pypi
-[README.developers]: README.developers
+[DEVELOPERS.md]: DEVELOPERS.md
 
 
 Usage
@@ -69,7 +64,7 @@ option with pandoc.  Alternatively, use
 
     --filter pandoc-xnos
 
-to activate all of the `pandoc-fignos`, `pandoc-eqnos`, `pandoc-tablenos`, and `pandoc-secnos` filters (if installed).
+to activate all of the filters in the [pandoc-xnos] suite (if installed).
 
 Any use of `--filter pandoc-citeproc` or `--bibliography=FILE` should come *after* the `pandoc-secnos` or `pandoc-xnos` filter calls.
 
@@ -249,7 +244,7 @@ Full docx support is awaiting input from a knowledgeable expert on how to struct
 
 Pandoc-secnos will continue to support pandoc 1.15-onward and python 2 & 3 for the foreseeable future.  The reasons for this are that a) some users cannot upgrade pandoc and/or python; and b) supporting all versions tends to make pandoc-secnos more robust.
 
-Developer notes are maintained in [README.developers].
+Developer notes are maintained in [DEVELOPERS.md].
 
 
 What's New
