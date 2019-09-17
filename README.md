@@ -136,10 +136,10 @@ Note: When using `*sec:id` and emphasis (e.g., `*italics*`) in the same sentence
 
 [demo2.md]: https://raw.githubusercontent.com/tomduck/pandoc-secnos/master/demos/demo2.md
 [pdf2]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo2.pdf
-[tex2]: https://raw.githack.com/tomduck/pandoc-secnos/master/demos/demo2.tex
-[html2]: https://raw.githack.com/tomduck/pandoc-secnos/master/demos/demo2.html
-[epub2]: https://raw.githack.com/tomduck/pandoc-secnos/master/demos/demo2.epub
-[docx2]: https://raw.githack.com/tomduck/pandoc-secnos/master/demos/demo2.docx
+[tex2]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo2.tex
+[html2]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo2.html
+[epub2]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo2.epub
+[docx2]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo2.docx
 
 
 ### Disabling Links ###
@@ -187,11 +187,11 @@ Demonstration: Processing [demo3.md] with pandoc + pandoc-secnos gives numbered 
 
 [metadata block]: http://pandoc.org/README.html#extension-yaml_metadata_block
 [demo3.md]: https://raw.githubusercontent.com/tomduck/pandoc-secnos/master/demos/demo3.md
-[pdf3]: https://raw.githack.com/tomduck/pandoc-secnos/master/demos/demo3.pdf
-[tex3]: https://raw.githack.com/tomduck/pandoc-secnos/master/demos/demo3.tex
-[html3]: https://raw.githack.com/tomduck/pandoc-secnos/master/demos/demo3.html
-[epub3]: https://raw.githack.com/tomduck/pandoc-secnos/master/demos/demo3.epub
-[docx3]: https://raw.githack.com/tomduck/pandoc-secnos/master/demos/demo3.docx
+[pdf3]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo3.pdf
+[tex3]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo3.tex
+[html3]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo3.html
+[epub3]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo3.epub
+[docx3]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo3.docx
 
 
 Technical Details
