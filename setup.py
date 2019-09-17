@@ -45,7 +45,7 @@ setup(
     download_url='https://github.com/tomduck/pandoc-secnos/tarball/' + \
                  __version__,
 
-    install_requires=['pandoc-xnos~=2.0.0b5'],
+    install_requires=['pandoc-xnos~=2.0.0'],
 
     py_modules=['pandoc_secnos'],
     entry_points={'console_scripts':['pandoc-secnos = pandoc_secnos:main']},
