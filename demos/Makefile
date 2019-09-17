@@ -17,9 +17,9 @@ out/%.pdf: %.md
 	@if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
 	pandoc $< --number-sections --filter pandoc-secnos --variable urlcolor=blue -o $@
 
-out/%.html: %.md
+out/%.html: %.md headers/header.html
 	@if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	pandoc $< --standalone --number-sections --filter pandoc-secnos -o $@
+	pandoc $< --standalone --number-sections --filter pandoc-secnos --include-in-header headers/header.html -o $@
 
 out/%.epub: %.md
 	@if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
