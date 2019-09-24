@@ -76,7 +76,8 @@ warninglevel = 2        # 0 - no warnings; 1 - some warnings; 2 - all warnings
 
 # Processing state variables
 sec = []         # Section number tracker
-references = {}  # Maps reference labels to section number
+references = {}  # Maps reference labels to section [number/tag, None,
+                 # duplicate flag] list
 
 # Processing flags
 # Flags that the plus name changed
@@ -110,7 +111,9 @@ def process_sections(key, value, fmt, meta):  # pylint: disable=unused-argument
             sec[i] = 0
 
         # Add new item to the references tracker
-        references[value[1][0]] = ['.'.join(str(i) for i in sec[1:]), None]
+        references[value[1][0]] = \
+          pandocxnos.Target('.'.join(str(i) for i in sec[1:]), None,
+                            value[1][0] in references)
 
 
 # TeX blocks -----------------------------------------------------------------
@@ -331,16 +334,15 @@ def main(stdin=STDIN, stdout=STDOUT, stderr=STDERR):
                                [process_sections], blocks)
 
     # Second pass
-    process_refs = process_refs_factory('pandoc-secnos', LABEL_PATTERN,
-                                        references.keys(), warninglevel)
+    process_refs = process_refs_factory(LABEL_PATTERN, references.keys(),
+                                        warninglevel)
     replace_refs = \
       replace_refs_factory(references, cleveref, False,
                            plusname['section'] if not capitalise or \
                            plusname_changed['section'] else \
                            [name.title() for name in plusname['section']],
                            starname['section'], allow_implicit_refs=True)
-    attach_attrs_span = attach_attrs_factory('pandoc-secnos', Span,
-                                             warninglevel, replace=True)
+    attach_attrs_span = attach_attrs_factory(Span, warninglevel, replace=True)
     altered = functools.reduce(lambda x, action: walk(x, action, fmt, meta),
                                [repair_refs, process_refs, replace_refs,
                                 attach_attrs_span],
