@@ -1,5 +1,6 @@
 ---
 title: Pandoc-secnos Demo
+secnos-cleveref: True
 ...
 
 Section One
@@ -11,7 +12,7 @@ Reference to section @sec:2.
 Section Two {#sec:2}
 ===========
 
-Reference to section @sec:section-one.  Section @sec:subsection comes next.
+Reference to @sec:section-one.  *@sec:subsection comes next.
 
 
 Subsection
