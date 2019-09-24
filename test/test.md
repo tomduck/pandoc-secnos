@@ -6,7 +6,7 @@ secnos-cleveref: True
 Section One
 ===========
 
-Reference to section @sec:2.
+Reference to @sec:2.
 
 
 Section Two {#sec:2}
