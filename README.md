@@ -1,10 +1,10 @@
 
-**New in 2.1.0:** Warnings are now given for duplicate reference targets.
+**New in 2.1.1:** Warnings are now given for duplicate reference targets.
 
 [more...](#whats-new)
 
 
-pandoc-secnos 2.1.0
+pandoc-secnos 2.1.1
 ===================
 
 *pandoc-secnos* is a [pandoc] filter for numbering section references when converting markdown to other formats.  It is part of the [pandoc-xnos] filter suite.  LaTeX/pdf, html, and epub output have native support.  Native support for docx output is a work in progress.
@@ -253,7 +253,7 @@ Developer notes are maintained in [DEVELOPERS.md].
 What's New
 ----------
 
-**New in 2.1.0:** Warnings are now given for duplicate reference targets.
+**New in 2.1.1:** Warnings are now given for duplicate reference targets.
 
 **New in 2.0.0:**  Pandoc-secnos is a new filter.  It has been makred with version number 2.0.0 in keeping with the major version number of the underlying pandoc-xnos library.
 
