@@ -1,4 +1,4 @@
-pandoc-secnos 2.1.0 (2019-09-24)
+pandoc-secnos 2.1.0 (2019-09-26)
 
     * Warns about duplicate reference targets.
 
