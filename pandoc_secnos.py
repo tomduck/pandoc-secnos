@@ -169,6 +169,7 @@ def process(meta):
     for name in ['secnos-warning-level', 'xnos-warning-level']:
         if name in meta:
             warninglevel = int(get_meta(meta, name))
+            pandocxnos.set_warning_level(warninglevel)
             break
 
     metanames = ['secnos-warning-level', 'xnos-warning-level',
@@ -269,41 +270,41 @@ def add_tex(meta):
             \\usepackage%s{cleveref}
         """ % ('[capitalise]' if capitalise else '')
         pandocxnos.add_to_header_includes(
-            meta, 'tex', tex, warninglevel,
-            r'\\usepackage(\[[\w\s,]*\])?\{cleveref\}')
+            meta, 'tex', tex,
+            regex=r'\\usepackage(\[[\w\s,]*\])?\{cleveref\}')
 
     if plusname_changed['section'] and references:
         tex = """
             %%%% pandoc-secnos: change cref names
             \\crefname{section}{%s}{%s}
         """ % (plusname['section'][0], plusname['section'][1])
-        pandocxnos.add_to_header_includes(meta, 'tex', tex, warninglevel)
+        pandocxnos.add_to_header_includes(meta, 'tex', tex)
 
     if plusname_changed['chapter'] and references:
         tex = """
             %%%% pandoc-secnos: change cref names
             \\crefname{chapter}{%s}{%s}
         """ % (plusname['chapter'][0], plusname['chapter'][1])
-        pandocxnos.add_to_header_includes(meta, 'tex', tex, warninglevel)
+        pandocxnos.add_to_header_includes(meta, 'tex', tex)
 
     if starname_changed['section'] and references:
         tex = """
             %%%% pandoc-secnos: change Cref names
             \\Crefname{section}{%s}{%s}
         """ % (starname['section'][0], starname['section'][1])
-        pandocxnos.add_to_header_includes(meta, 'tex', tex, warninglevel)
+        pandocxnos.add_to_header_includes(meta, 'tex', tex)
 
     if starname_changed['chapter'] and references:
         tex = """
             %%%% pandoc-secnos: change Cref names
             \\Crefname{chapter}{%s}{%s}
         """ % (starname['chapter'][0], starname['chapter'][1])
-        pandocxnos.add_to_header_includes(meta, 'tex', tex, warninglevel)
+        pandocxnos.add_to_header_includes(meta, 'tex', tex)
 
     if secoffset and references:
         pandocxnos.add_to_header_includes(
-            meta, 'tex', SECOFFSET_TEX % secoffset, warninglevel,
-            r'\\setcounter\{section\}')
+            meta, 'tex', SECOFFSET_TEX % secoffset,
+            regex=r'\\setcounter\{section\}')
 
     if warnings:
         STDERR.write('\n')
@@ -334,15 +335,14 @@ def main(stdin=STDIN, stdout=STDOUT, stderr=STDERR):
                                [process_sections], blocks)
 
     # Second pass
-    process_refs = process_refs_factory(LABEL_PATTERN, references.keys(),
-                                        warninglevel)
+    process_refs = process_refs_factory(LABEL_PATTERN, references.keys())
     replace_refs = \
       replace_refs_factory(references, cleveref, False,
                            plusname['section'] if not capitalise or \
                            plusname_changed['section'] else \
                            [name.title() for name in plusname['section']],
                            starname['section'], allow_implicit_refs=True)
-    attach_attrs_span = attach_attrs_factory(Span, warninglevel, replace=True)
+    attach_attrs_span = attach_attrs_factory(Span, replace=True)
     altered = functools.reduce(lambda x, action: walk(x, action, fmt, meta),
                                [repair_refs, process_refs, replace_refs,
                                 attach_attrs_span],
