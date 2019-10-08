@@ -137,7 +137,7 @@ instead.  If clever references are enabled by default (see [Customization](#cust
 
 Demonstration: Processing [demo2.md] with pandoc + pandoc-secnos gives numbered section references in [pdf][pdf2], [tex][tex2], [html][html2], [epub][epub2], [docx][docx2] and other formats.
 
-Note: When using `*sec:id` and emphasis (e.g., `*italics*`) in the same sentence, the `*` in the clever reference must be backslash-escaped; i.e., `\*sec:id`.
+Note: When using `*@sec:id` and emphasis (e.g., `*italics*`) in the same sentence, the `*` in the clever reference must be backslash-escaped; i.e., `\*@sec:id`.
 
 [demo2.md]: https://raw.githubusercontent.com/tomduck/pandoc-secnos/master/demos/demo2.md
 [pdf2]: https://raw.githack.com/tomduck/pandoc-secnos/demos/demo2.pdf
