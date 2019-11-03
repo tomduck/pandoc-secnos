@@ -75,9 +75,9 @@ secoffset = 0           # Section number offset
 warninglevel = 2        # 0 - no warnings; 1 - some warnings; 2 - all warnings
 
 # Processing state variables
-sec = []         # Section number tracker
-references = {}  # Maps reference labels to section [number/tag, None,
-                 # duplicate flag] list
+sec = []      # Section number tracker
+targets = {}  # Maps reference labels to section [number/tag, None,
+              # duplicate flag] list
 
 # Processing flags
 # Flags that the plus name changed
@@ -110,10 +110,10 @@ def process_sections(key, value, fmt, meta):  # pylint: disable=unused-argument
         for i in range(level+1, len(sec)):
             sec[i] = 0
 
-        # Add new item to the references tracker
-        references[value[1][0]] = \
+        # Add new item to the targets tracker
+        targets[value[1][0]] = \
           pandocxnos.Target('.'.join(str(i) for i in sec[1:]), None,
-                            value[1][0] in references)
+                            value[1][0] in targets)
 
 
 # TeX blocks -----------------------------------------------------------------
@@ -244,7 +244,7 @@ def process(meta):
 def add_tex(meta):
     """Adds tex to the meta data."""
 
-    warnings = warninglevel == 2 and references and \
+    warnings = warninglevel == 2 and targets and \
       (pandocxnos.cleveref_required() or
        any(plusname_changed.values()) or any(starname_changed.values()) or \
        secoffset)
@@ -264,7 +264,7 @@ def add_tex(meta):
     # is a known issue and is owing to a design decision in pandoc.
     # See https://github.com/jgm/pandoc/issues/3139.
 
-    if pandocxnos.cleveref_required() and references:
+    if pandocxnos.cleveref_required() and targets:
         tex = """
             %%%% pandoc-secnos: required package
             \\usepackage%s{cleveref}
@@ -273,35 +273,35 @@ def add_tex(meta):
             meta, 'tex', tex,
             regex=r'\\usepackage(\[[\w\s,]*\])?\{cleveref\}')
 
-    if plusname_changed['section'] and references:
+    if plusname_changed['section'] and targets:
         tex = """
             %%%% pandoc-secnos: change cref names
             \\crefname{section}{%s}{%s}
         """ % (plusname['section'][0], plusname['section'][1])
         pandocxnos.add_to_header_includes(meta, 'tex', tex)
 
-    if plusname_changed['chapter'] and references:
+    if plusname_changed['chapter'] and targets:
         tex = """
             %%%% pandoc-secnos: change cref names
             \\crefname{chapter}{%s}{%s}
         """ % (plusname['chapter'][0], plusname['chapter'][1])
         pandocxnos.add_to_header_includes(meta, 'tex', tex)
 
-    if starname_changed['section'] and references:
+    if starname_changed['section'] and targets:
         tex = """
             %%%% pandoc-secnos: change Cref names
             \\Crefname{section}{%s}{%s}
         """ % (starname['section'][0], starname['section'][1])
         pandocxnos.add_to_header_includes(meta, 'tex', tex)
 
-    if starname_changed['chapter'] and references:
+    if starname_changed['chapter'] and targets:
         tex = """
             %%%% pandoc-secnos: change Cref names
             \\Crefname{chapter}{%s}{%s}
         """ % (starname['chapter'][0], starname['chapter'][1])
         pandocxnos.add_to_header_includes(meta, 'tex', tex)
 
-    if secoffset and references:
+    if secoffset and targets:
         pandocxnos.add_to_header_includes(
             meta, 'tex', SECOFFSET_TEX % secoffset,
             regex=r'\\setcounter\{section\}')
@@ -335,9 +335,9 @@ def main(stdin=STDIN, stdout=STDOUT, stderr=STDERR):
                                [process_sections], blocks)
 
     # Second pass
-    process_refs = process_refs_factory(LABEL_PATTERN, references.keys())
+    process_refs = process_refs_factory(LABEL_PATTERN, targets.keys())
     replace_refs = \
-      replace_refs_factory(references, cleveref, False,
+      replace_refs_factory(targets, cleveref, False,
                            plusname['section'] if not capitalise or \
                            plusname_changed['section'] else \
                            [name.title() for name in plusname['section']],
