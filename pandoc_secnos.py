@@ -76,8 +76,7 @@ warninglevel = 2        # 0 - no warnings; 1 - some warnings; 2 - all warnings
 
 # Processing state variables
 sec = []      # Section number tracker
-targets = {}  # Maps reference labels to section [number/tag, None,
-              # duplicate flag] list
+targets = {}  # Global targets tracker
 
 # Processing flags
 # Flags that the plus name changed
