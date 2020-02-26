@@ -105,6 +105,9 @@ def process_sections(key, value, fmt, meta):  # pylint: disable=unused-argument
             sec = [secoffset]
         while len(sec) <= level:
             sec.append(0)
+        if len(sec) > level+1:
+            sec = sec[:level+1]
+        assert len(sec) == level+1
         sec[level] += 1
         for i in range(level+1, len(sec)):
             sec[i] = 0
