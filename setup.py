@@ -17,8 +17,13 @@
 
 import re
 import io
+import textwrap
+import sys
+import shutil
 
 from setuptools import setup
+
+# pylint: disable=invalid-name
 
 DESCRIPTION = """\
 A pandoc filter for numbering equations and their references
@@ -58,3 +63,12 @@ setup(
         'Programming Language :: Python'
         ]
 )
+
+# Check that the pandoc-secnos script is on the PATH
+if not shutil.which('pandoc-secnos'):
+    msg = """
+          ERROR: `pandoc-secnos` script not found. This will need to 
+          be corrected.  If you need help, please file an Issue at
+          https://github.com/tomduck/pandoc-secnos/issues.\n"""
+    print(textwrap.dedent(msg))
+    sys.exit(-1)
