@@ -103,18 +103,16 @@ def process_sections(key, value, fmt, meta):  # pylint: disable=unused-argument
         assert level
         if not sec:
             sec = [secoffset]
-        while len(sec) <= level:
+        while len(sec) < level:
             sec.append(0)
-        if len(sec) > level+1:
-            sec = sec[:level+1]
-        assert len(sec) == level+1
-        sec[level] += 1
-        for i in range(level+1, len(sec)):
-            sec[i] = 0
+        if len(sec) > level:
+            sec = sec[:level]
+        assert len(sec) == level
+        sec[level-1] += 1
 
         # Add new item to the targets tracker
         targets[value[1][0]] = \
-          pandocxnos.Target('.'.join(str(i) for i in sec[1:]), None,
+          pandocxnos.Target('.'.join(str(i) for i in sec), None,
                             value[1][0] in targets)
 
 

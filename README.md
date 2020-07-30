@@ -179,8 +179,7 @@ Pandoc-secnos may be customized by setting variables in the [metadata block] or 
 
   * `xnos-number-offset` - Set to an integer to offset the section
     numbers in references.  For html and epub output, this feature
-    should be used together with pandoc's
-    `--number-offset`
+    should be used together with pandoc's `--number-offset`
     [option](https://pandoc.org/MANUAL.html#option--number-sections)
     set to the same integer value.  For LaTeX/PDF, this option
     offsets the actual section numbers as required.
