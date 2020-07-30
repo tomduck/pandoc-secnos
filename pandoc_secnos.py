@@ -3,7 +3,7 @@
 """pandoc-secnos: a pandoc filter that inserts section references."""
 
 
-__version__ = '2.2.0'
+__version__ = '2.2.1'
 
 
 # Copyright 2015-2020 Thomas J. Duck.

@@ -1,8 +1,9 @@
-pandoc-secnos 2.X.X (unreleased)
+pandoc-secnos 2.2.1 (2020-07-30)
 
     * Fixed "Failed reading: not a valid json" error when using
       python 2.7 (pandoc-tablenos Issue #19 and pandoc-eqnos
       Issue #45).
+    * Fixed section number offset problem for html output (Issue #2).
 
 
 pandoc-secnos 2.2.0 (2020-07-30)
