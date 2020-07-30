@@ -1,7 +1,5 @@
 
-**New in 2.2.0:**
-
-**New in 2.1.1:** Warnings are now given for duplicate reference targets.
+**New in 2.2.0:** Updated for pandoc 2.10.1. 
 
 [more...](#whats-new)
 
@@ -254,6 +252,8 @@ Developer notes are maintained in [DEVELOPERS.md].
 
 What's New
 ----------
+
+**New in 2.2.0:** Updated for pandoc 2.10.1. 
 
 **New in 2.1.1:** Warnings are now given for duplicate reference targets.
 
