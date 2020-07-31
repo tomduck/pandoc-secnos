@@ -256,7 +256,7 @@ What's New
 
 **New in 2.1.1:** Warnings are now given for duplicate reference targets.
 
-**New in 2.0.0:**  Pandoc-secnos is a new filter.  It has been makred with version number 2.0.0 in keeping with the major version number of the underlying pandoc-xnos library.
+**New in 2.0.0:**  Pandoc-secnos is a new filter.  It has been marked with version number 2.0.0 in keeping with the major version number of the underlying pandoc-xnos library.
 
 
 ----
