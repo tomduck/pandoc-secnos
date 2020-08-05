@@ -50,6 +50,7 @@ from pandocxnos import STRTYPES, STDIN, STDOUT, STDERR
 from pandocxnos import check_bool, get_meta
 from pandocxnos import repair_refs, process_refs_factory, replace_refs_factory
 from pandocxnos import attach_attrs_factory
+from pandocxnos import version
 
 # Read the command-line arguments
 parser = argparse.ArgumentParser(description='Pandoc section numbers filter.')
@@ -324,8 +325,10 @@ def main(stdin=STDIN, stdout=STDOUT, stderr=STDERR):
     PANDOCVERSION = pandocxnos.init(args.pandocversion, doc)
 
     # Chop up the doc
-    meta = doc['meta'] if PANDOCVERSION >= '1.18' else doc[0]['unMeta']
-    blocks = doc['blocks'] if PANDOCVERSION >= '1.18' else doc[1:]
+    meta = doc['meta'] if version(PANDOCVERSION) >= version('1.18') \
+      else doc[0]['unMeta']
+    blocks = doc['blocks'] if version(PANDOCVERSION) >= version('1.18') \
+      else doc[1:]
 
     # Process the metadata variables
     process(meta)
@@ -352,7 +355,7 @@ def main(stdin=STDIN, stdout=STDOUT, stderr=STDERR):
         add_tex(meta)
 
     # Update the doc
-    if PANDOCVERSION >= '1.18':
+    if version(PANDOCVERSION) >= version('1.18'):
         doc['blocks'] = altered
     else:
         doc = doc[:1] + altered
