@@ -201,11 +201,11 @@ Demonstration: Processing [demo3.md] with pandoc + pandoc-secnos gives numbered 
 Technical Details
 -----------------
 
-### TeX/pdf Output ###
+### LaTeX/pdf Output ###
 
-During processing, pandoc-secnos inserts packages and supporting TeX into the `header-includes` metadata field.  To see what is inserted, set the `secnos-warning-level` meta variable to `2`.  Note that any use of pandoc's `--include-in-header` option [overrides](https://github.com/jgm/pandoc/issues/3139) all `header-includes`.
+During processing, pandoc-secnos inserts packages and supporting LaTeX into the `header-includes` metadata field.  To see what is inserted, set the `secnos-warning-level` meta variable to `2`.  Note that any use of pandoc's `--include-in-header` option [overrides](https://github.com/jgm/pandoc/issues/3139) all `header-includes`.
 
-An example reference in TeX looks like
+An example reference in LaTeX looks like
 
 ~~~latex
 See \cref{sec:1}.
