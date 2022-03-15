@@ -42,10 +42,10 @@ setup(
 
     author='Thomas J. Duck',
     author_email='tomduck@tomduck.ca',
-    description='Equation number filter for pandoc',
+    description='Section number filter for pandoc',
     long_description=DESCRIPTION,
     license='GPL',
-    keywords='pandoc equation numbers filter',
+    keywords='pandoc section numbers filter',
     url='https://github.com/tomduck/pandoc-secnos',
     download_url='https://github.com/tomduck/pandoc-secnos/tarball/' + \
                  __version__,
@@ -63,12 +63,3 @@ setup(
         'Programming Language :: Python'
         ]
 )
-
-# Check that the pandoc-secnos script is on the PATH
-if not shutil.which('pandoc-secnos'):
-    msg = """
-          ERROR: `pandoc-secnos` script not found. This will need to 
-          be corrected.  If you need help, please file an Issue at
-          https://github.com/tomduck/pandoc-secnos/issues.\n"""
-    print(textwrap.dedent(msg))
-    sys.exit(-1)
